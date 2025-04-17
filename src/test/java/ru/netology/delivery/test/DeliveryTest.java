@@ -45,27 +45,27 @@ public class DeliveryTest {
                 .shouldBe(visible);
     }
     
-//    @Test
-//    @DisplayName("Should successful plan and replan meeting")
-//    void currentMeetingDate(){
-//        $("[data-test-id=city]").$("[type=text]").setValue(DataGenerator.generateCity());
-//        $("[data-test-id=date]").$("[class=input__control]").doubleClick().sendKeys(BACK_SPACE);
-//        $("[data-test-id=date]").$("[class=input__control]").setValue(date);
-//        $("[name=name]").setValue(DataGenerator.generateName("ru"));
-//        $("[name=phone]").setValue(DataGenerator.generatePhone("ru"));
-//        $(".checkbox__text").click();
-//        $(".button__text").click();
-//        $("[data-test-id=success-notification]").shouldBe(visible, Duration.ofSeconds(14));
-//        $("[data-test-id=success-notification] [class=notification__content]").shouldHave(exactText("Встреча успешно запланирована на " + date))               
-//                .shouldBe(visible);
-//        $("[data-test-id=success-notification] [class=icon-button__content]").click();
-//        //следующие 2 шага можно пропустить,
-//        $("[data-test-id=date]").$("[class=input__control]").doubleClick().sendKeys(BACK_SPACE);
-//        $("[data-test-id=date]").$("[class=input__control]").setValue(date);
+    @Test
+    @DisplayName("Should successful plan and replan meeting")
+    void currentMeetingDate(){
+        $("[data-test-id=city]").$("[type=text]").setValue(DataGenerator.generateCity());
+        $("[data-test-id=date]").$("[class=input__control]").doubleClick().sendKeys(BACK_SPACE);
+        $("[data-test-id=date]").$("[class=input__control]").setValue(date);
+        $("[name=name]").setValue(DataGenerator.generateName("ru"));
+        $("[name=phone]").setValue(DataGenerator.generatePhone("ru"));
+        $(".checkbox__text").click();
+        $(".button__text").click();
+        $("[data-test-id=success-notification]").shouldBe(visible, Duration.ofSeconds(14));
+        $("[data-test-id=success-notification] [class=notification__content]").shouldHave(exactText("Встреча успешно запланирована на " + date))               
+                .shouldBe(visible);
+        $("[data-test-id=success-notification] [class=icon-button__content]").click();
+        //следующие 2 шага можно пропустить,
+        $("[data-test-id=date]").$("[class=input__control]").doubleClick().sendKeys(BACK_SPACE);
+        $("[data-test-id=date]").$("[class=input__control]").setValue(date);
 
-//        $(".button__text").click();
-//        $("[data-test-id=success-notification] [class=notification__content]").shouldHave(exactText("У вас уже запланирована встреча на эту дату "))
-//                .shouldBe(visible);
-//    }
+        $(".button__text").click();
+        $("[data-test-id=success-notification] [class=notification__content]").shouldHave(exactText("У вас уже запланирована встреча на эту дату "))
+                .shouldBe(visible);
+    }
     
 }
