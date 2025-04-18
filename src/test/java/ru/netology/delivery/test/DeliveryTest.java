@@ -6,6 +6,8 @@ import ru.netology.delivery.data.DataGenerator;
 import java.time.Duration;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.visible;
+import com.codeborne.selenide.Condition;
+import java.time.Duration;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static org.openqa.selenium.Keys.BACK_SPACE;
@@ -39,8 +41,8 @@ public class DeliveryTest {
         $("[data-test-id=date]").$("[class=input__control]").setValue(changeTheDate);
         $(".button__text").click();
         $("[data-test-id='replan-notification'] .notification__content")
-                .shouldHave(Condition.exactText("У вас уже запланирована встреча на другую дату. Перепланировать?"), Duration.ofSeconds(10));
-                .shouldBe(visible);
+                .shouldBe(Condition.visible, Duration.ofSeconds(10))
+                .shouldHave(Condition.exactText("У вас уже запланирована встреча на другую дату. Перепланировать?"));
         $("[data-test-id=replan-notification] [class=button__content]").click();
         $("[data-test-id=success-notification] [class=notification__content]").shouldHave(exactText("Встреча успешно запланирована на " + changeTheDate))
                 .shouldBe(visible);
