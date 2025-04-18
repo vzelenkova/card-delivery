@@ -22,28 +22,38 @@ public class DeliveryTest {
     }
 
     @Test
-    @DisplayName("Should successful plan and replan meeting")
-    void otherMeetingDate(){
-        $("[data-test-id=city]").$("[type=text]").setValue(DataGenerator.generateCity());
-        $("[data-test-id=date]").$("[class=input__control]").doubleClick().sendKeys(BACK_SPACE);
-        $("[data-test-id=date]").$("[class=input__control]").setValue(date);
-        $("[name=name]").setValue(DataGenerator.generateName("ru"));
-        $("[name=phone]").setValue(DataGenerator.generatePhone("ru"));
-        $(".checkbox__text").click();
-        $(".button__text").click();
-        $("[data-test-id=success-notification]").shouldBe(visible, Duration.ofSeconds(14));
-        $("[data-test-id=success-notification] [class=notification__content]").shouldHave(exactText("Встреча успешно запланирована на " + date))
-                .shouldBe(visible);
-        $("[data-test-id=success-notification] [class=icon-button__content]").click();
-        $("[data-test-id=date]").$("[class=input__control]").doubleClick().sendKeys(BACK_SPACE);
-        $("[data-test-id=date]").$("[class=input__control]").setValue(changeTheDate);
-        $(".button__text").click();
-        $("[data-test-id=replan-notification] [class=notification__content]").shouldHave(exactText("У вас уже запланирована встреча на другую дату. Перепланировать?"))
-                .shouldBe(visible);
-        $("[data-test-id=replan-notification] [class=button__content]").click();
-        $("[data-test-id=success-notification] [class=notification__content]").shouldHave(exactText("Встреча успешно запланирована на " + changeTheDate))
-                .shouldBe(visible);
-    }
+    void otherMeetingDate() {
+    String firstDate = DataGenerator.generateDate(4);
+    String secondDate = DataGenerator.generateDate(7);
+    var user = DataGenerator.Registration.generateUser("ru");
+
+    $("[data-test-id=city] input").setValue(user.getCity());
+    $("[data-test-id=date] input").sendKeys(Keys.CONTROL + "A", Keys.BACK_SPACE);
+    $("[data-test-id=date] input").setValue(firstDate);
+    $("[data-test-id=name] input").setValue(user.getName());
+    $("[data-test-id=phone] input").setValue(user.getPhone());
+    $("[data-test-id=agreement]").click();
+    $$("button.button").find(Condition.exactText("Запланировать")).click();
+
+    $("[data-test-id=success-notification]").shouldBe(Condition.visible, Duration.ofSeconds(10));
+    $("[data-test-id=success-notification] .notification__content")
+        .shouldHave(Condition.text(firstDate));
+
+    // Перепланируем
+    $("[data-test-id=date] input").sendKeys(Keys.CONTROL + "A", Keys.BACK_SPACE);
+    $("[data-test-id=date] input").setValue(secondDate);
+    $$("button.button").find(Condition.exactText("Запланировать")).click();
+
+    $("[data-test-id='replan-notification'] .notification__content")
+        .shouldBe(Condition.visible, Duration.ofSeconds(10))
+        .shouldHave(Condition.exactText("У вас уже запланирована встреча на другую дату. Перепланировать?"));
+
+    $$("button.button").find(Condition.exactText("Перепланировать")).click();
+
+    $("[data-test-id=success-notification]").shouldBe(Condition.visible, Duration.ofSeconds(10));
+    $("[data-test-id=success-notification] .notification__content")
+        .shouldHave(Condition.text(secondDate));
+     }
     
 //    @Test
 //    @DisplayName("Should successful plan and replan meeting")
