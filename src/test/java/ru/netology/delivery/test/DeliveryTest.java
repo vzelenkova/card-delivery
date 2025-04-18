@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import ru.netology.delivery.data.DataGenerator;
 import java.time.Duration;
 import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import com.codeborne.selenide.Condition;
 import java.time.Duration;
