@@ -59,10 +59,10 @@ public class DeliveryTest {
 //        $(".checkbox__text").click();
 //        $(".button__text").click();
 //        $("[data-test-id=success-notification]").shouldBe(visible, Duration.ofSeconds(14));
-//        $("[data-test-id=success-notification] [class=notification__content]").shouldHave(exactText("Встреча успешно запланирована на " + date))
+//        $("[data-test-id=success-notification] [class=notification__content]").shouldHave(exactText("Встреча успешно запланирована на " + date))                       Данный тест будет работать только после исправления бага в приложении.
 //                .shouldBe(visible);
 //        $("[data-test-id=success-notification] [class=icon-button__content]").click();
-//        //следующие 2 шага можно пропустить,
+//        
 //        $("[data-test-id=date]").$("[class=input__control]").doubleClick().sendKeys(BACK_SPACE);
 //        $("[data-test-id=date]").$("[class=input__control]").setValue(date);
 //
