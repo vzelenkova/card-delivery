@@ -40,7 +40,7 @@ public class DeliveryTest {
         $("[data-test-id=date]").$("[class=input__control]").doubleClick().sendKeys(BACK_SPACE);
         $("[data-test-id=date]").$("[class=input__control]").setValue(changeTheDate);
         $(".button__text").click();
-        $("[data-test-id='replan-notification'] .notification__content")
+        $("[data-test-id='replan-notification']")
                 .shouldBe(Condition.visible, Duration.ofSeconds(10))
                 .shouldHave(Condition.exactText("У вас уже запланирована встреча на другую дату. Перепланировать?"));
         $("[data-test-id=replan-notification] [class=button__content]").click();
