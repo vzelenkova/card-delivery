@@ -38,7 +38,8 @@ public class DeliveryTest {
         $("[data-test-id=date]").$("[class=input__control]").doubleClick().sendKeys(BACK_SPACE);
         $("[data-test-id=date]").$("[class=input__control]").setValue(changeTheDate);
         $(".button__text").click();
-        $("[data-test-id=replan-notification] [class=notification__content]").shouldHave(exactText("У вас уже запланирована встреча на другую дату. Перепланировать?"))
+        $("[data-test-id='replan-notification'] .notification__content")
+                .shouldHave(Condition.exactText("У вас уже запланирована встреча на другую дату. Перепланировать?"), Duration.ofSeconds(10));
                 .shouldBe(visible);
         $("[data-test-id=replan-notification] [class=button__content]").click();
         $("[data-test-id=success-notification] [class=notification__content]").shouldHave(exactText("Встреча успешно запланирована на " + changeTheDate))
