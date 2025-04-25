@@ -4,6 +4,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.netology.delivery.data.DataGenerator;
 import java.time.Duration;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
@@ -22,6 +24,7 @@ public class DeliveryTest {
     @BeforeEach
     void setup() {
         open("http://localhost:9999");
+        SelenideLogger.addListener("allure", new AllureSelenide().screenshots(true).savePageSource(true));
     }
 
     @Test
