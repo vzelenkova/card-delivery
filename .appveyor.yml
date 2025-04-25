@@ -18,7 +18,3 @@ build_script:
 
 after_test:
   - allure generate build/allure-results --clean -o build/allure-report
-
- artifacts:
-  - path: build/allure-report
-    name: AllureReport
