@@ -9,8 +9,6 @@ branches:
 build: off
 
 install:
-  - java -jar ./artifacts/app-replan-delivery.jar &
-  - chmod +x gradlew
   - choco install allure.commandline -y
   - refreshenv
 
