@@ -6,9 +6,6 @@ environment:
   ALLURE_VERSION: 2.24.0
 
 install:
-  - where java
-  - java -version
-
   - appveyor DownloadFile https://github.com/allure-framework/allure2/releases/download/%ALLURE_VERSION%/allure-%ALLURE_VERSION%.zip -FileName allure.zip
   - 7z x allure.zip -oC:\allure > nul
   - set PATH=C:\allure\allure-%ALLURE_VERSION%\bin;%PATH%
