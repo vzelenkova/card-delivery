@@ -4,10 +4,12 @@ image: Visual Studio 2022
 
 environment:
   JAVA_HOME: C:\Program Files\Java\jdk-17
+  ALLURE_VERSION: 2.24.0
 
 install:
-  - choco install allure.commandline -y
-  - refreshenv
+  - appveyor DownloadFile https://github.com/allure-framework/allure2/releases/download/%ALLURE_VERSION%/allure-%ALLURE_VERSION%.zip -FileName allure.zip
+  - 7z x allure.zip -oC:\allure > nul
+  - set PATH=C:\allure\allure-%ALLURE_VERSION%\bin;%PATH%
 
 build_script:
   - gradlew.bat clean test
@@ -15,3 +17,7 @@ build_script:
 
 after_test:
   - allure generate build/allure-results --clean -o build/allure-report
+
+artifacts:
+  - path: build/allure-report
+    name: AllureReport
