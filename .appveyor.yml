@@ -1,12 +1,9 @@
-image: Ubuntu
+version: 1.0.{build}
 
-stack: jdk 11
+image: Visual Studio 2022
 
-branches:
-  only:
-    - main
-
-build: off
+environment:
+  JAVA_HOME: C:\Program Files\Java\jdk-17
 
 install:
   - choco install allure.commandline -y
