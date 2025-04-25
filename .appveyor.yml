@@ -11,6 +11,16 @@ build: off
 install:
   - java -jar ./artifacts/app-replan-delivery.jar &
   - chmod +x gradlew
+  - choco install allure.commandline -y
+  - refreshenv
 
 build_script:
-  - ./gradlew test -Dselenide.headless=true --info
+  - gradlew.bat clean test
+  - gradlew.bat allureReport
+
+after_test:
+  - allure generate build/allure-results --clean -o build/allure-report
+
+ artifacts:
+  - path: build/allure-report
+    name: AllureReport
