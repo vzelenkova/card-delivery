@@ -1,22 +1,16 @@
-version: 1.0.{build}
-
-image: Visual Studio 2022
-
-environment:
-  ALLURE_VERSION: 2.24.0
-
-install:
-  - appveyor DownloadFile https://github.com/allure-framework/allure2/releases/download/%ALLURE_VERSION%/allure-%ALLURE_VERSION%.zip -FileName allure.zip
-  - 7z x allure.zip -oC:\allure > nul
-  - set PATH=C:\allure\allure-%ALLURE_VERSION%\bin;%PATH%
-
-build_script:
-  - gradlew.bat clean test
-  - gradlew.bat allureReport
-
-after_test:
-  - allure generate build/allure-results --clean -o build/allure-report
-
-artifacts:
-  - path: build/allure-report
-    name: AllureReport
+image: Ubuntu
+ 
+ stack: jdk 11
+ 
+ branches:
+   only:
+     - main
+ 
+ build: off
+ 
+ install:
+   - java -jar ./artifacts/app-replan-delivery.jar &
+   - chmod +x gradlew
+ 
+ build_script:
+   - ./gradlew test -Dselenide.headless=true --info
